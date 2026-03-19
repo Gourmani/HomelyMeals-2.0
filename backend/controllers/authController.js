@@ -58,7 +58,7 @@ const token = jwt.sign(
   { expiresIn:"1d" }
 )
 
-// VERIFY LINK
+// ✅ VERIFY LINK (PRODUCTION)
 const url = `https://homelymeals-2-0.onrender.com/api/auth/verify/${token}`
 
 // SEND EMAIL
@@ -107,8 +107,8 @@ await user.save()
 
 console.log("USER VERIFIED:", user.email)
 
-//res.send("✅ Email verified successfully! You can now login.")
-res.redirect("http://localhost:5173/login?verified=true")
+// ✅ REDIRECT TO VERCEL FRONTEND
+res.redirect("https://homely-meals-2-0.vercel.app/login?verified=true")
 
 }catch(error){
 console.log("VERIFY ERROR:", error.message)
@@ -191,7 +191,8 @@ process.env.JWT_SECRET,
 { expiresIn:"15m" }
 )
 
-const url = `http://localhost:5173/reset-password/${token}`
+// ✅ FRONTEND RESET LINK (VERCEL)
+const url = `https://homely-meals-2-0.vercel.app/reset-password/${token}`
 
 await sendEmail(
 user.email,
@@ -202,6 +203,7 @@ user.email,
 res.json({message:"Password reset link sent to your email"})
 
 }catch(error){
+console.log("FORGOT PASSWORD ERROR:", error.message)
 res.status(500).json({message:"Server error"})
 }
 }
@@ -221,7 +223,7 @@ return res.status(400).json({message:"Invalid token"})
 
 const {password} = req.body
 
-// same password validation
+// password validation
 const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/
 
 if(!passwordRegex.test(password)){
