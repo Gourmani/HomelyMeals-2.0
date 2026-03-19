@@ -59,7 +59,7 @@ const token = jwt.sign(
 )
 
 // VERIFY LINK
-const url = `http://localhost:5000/api/auth/verify/${token}`
+const url = `https://homelymeals-2-0.onrender.com/api/auth/verify/${token}`
 
 // SEND EMAIL
 try {
