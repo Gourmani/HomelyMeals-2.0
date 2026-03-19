@@ -20,6 +20,8 @@ import AdminOrders from "./admin/AdminOrders"
 import AdminUsers from "./admin/AdminUsers"
 import CartProvider from "./context/CartContext"
 import OrderSuccess from "./pages/OrderSuccess"
+import ResetPassword from "./pages/ResetPassword"
+import ForgotPassword from "./pages/ForgotPassword"
 
 function App() {
   return (
@@ -76,6 +78,8 @@ function App() {
           <Route path="/admin/orders" element={<AdminOrders />} />
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/order-success" element={<OrderSuccess />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
 
         <Footer />

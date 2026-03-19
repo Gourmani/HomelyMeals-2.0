@@ -22,6 +22,12 @@ role:{
 type:String,
 enum:["user","admin"],
 default:"user"
+},
+
+// ✅ ADD THIS
+isVerified:{
+type:Boolean,
+default:false
 }
 
 },{

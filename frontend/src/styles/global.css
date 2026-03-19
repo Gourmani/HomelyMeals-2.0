@@ -1217,9 +1217,8 @@ html {
 }
 
 
-
 /* ============================= */
-/* NAVBAR (WOW VERSION) */
+/* NAVBAR */
 /* ============================= */
 
 .navbar {
@@ -1228,15 +1227,26 @@ html {
   z-index: 1000;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   padding: 15px 40px;
 
   background: #ff7a00;
-  backdrop-filter: blur(10px);
-
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* LEFT / CENTER / RIGHT */
+
+.nav-left {
+  flex: 1;
+}
+
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
 }
 
 /* LOGO */
@@ -1244,28 +1254,20 @@ html {
 .logo {
   font-size: 22px;
   font-weight: bold;
-  color: rgb(3, 14, 0);
-  font-family:monospace;
+  color: #030e00;
+  font-family: monospace;
 }
 
 /* LINKS */
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.nav-links a {
+.nav-right a {
   color: white;
   font-size: 15px;
-  transition: 0.3s;
   position: relative;
+  transition: 0.3s;
 }
 
-/* underline animation */
-
-.nav-links a::after {
+.nav-right a::after {
   content: "";
   position: absolute;
   width: 0%;
@@ -1276,7 +1278,7 @@ html {
   transition: 0.3s;
 }
 
-.nav-links a:hover::after {
+.nav-right a:hover::after {
   width: 100%;
 }
 
@@ -1316,6 +1318,8 @@ html {
   color: white;
 }
 
+/* LOGOUT */
+
 .logout-btn {
   background: transparent;
   border: 1px solid white;
@@ -1331,22 +1335,22 @@ html {
   color: #ff7a00;
 }
 
-/* REGISTER BUTTON */
+/* PRIMARY BUTTON (CENTER) */
 
-.primary-btn {
+.primary-btn-nav {
   background: white;
-  color: #ff7a00;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-weight: 500;
+  color: #ff7a00 !important;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
   transition: 0.3s;
+  text-decoration: none;
 }
 
 .primary-btn:hover {
-  background: #ffe0cc;
+  background: #ffe0c2;
+  transform: translateY(-2px);
 }
-
-
 
 
 /* ============================= */
@@ -1465,4 +1469,224 @@ html {
   text-align: center;
   font-weight: bold;
   color: #16a34a;
+}
+
+
+
+/* ============================= */
+/* MAIN LAYOUT (FIX LEFT-RIGHT) */
+/* ============================= */
+
+.auth-container-lr {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+
+/* ============================= */
+/* LEFT SIDE */
+/* ============================= */
+
+.auth-left-lr {
+  flex: 1;
+  min-width: 50%;
+
+  background: linear-gradient(135deg, #ff7a00, #ff9a3c);
+  color: white;
+  padding: 60px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  animation: fadeIn 1s ease-in;
+}
+
+/* 🔥 GRADIENT HEADING TEXT */
+.auth-left-lr h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  line-height: 1.3;
+
+  background: linear-gradient(90deg, #ffffff, #ffe0c2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* SUBTEXT */
+.auth-left-lr p {
+  font-size: 15px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+/* LIST */
+.auth-left-lr ul {
+  list-style: none;
+  padding: 0;
+}
+
+.auth-left-lr li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  opacity: 0.95;
+}
+
+/* ============================= */
+/* RIGHT SIDE */
+/* ============================= */
+
+.auth-right-lr {
+  flex: 1;
+  min-width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* center form */
+
+  padding: 60px;
+
+  animation: slideIn 0.8s ease-in;
+}
+
+/* FORM WIDTH CONTROL */
+.auth-right-lr form {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* HEADING */
+.auth-right-lr h2 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-family: cursive;
+  font-weight: 700;
+  color: #333;
+}
+
+/* ============================= */
+/* INPUTS */
+/* ============================= */
+
+.auth-right-lr input {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 12px;
+
+  border-radius: 8px;
+  border: 1px solid #ccc;
+
+  transition: 0.3s;
+}
+
+.auth-right-lr input:focus {
+  border-color: #ff7a00;
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 122, 0, 0.4);
+}
+
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+
+.primary-btn-lr {
+  width: 100%;
+  background: linear-gradient(135deg, #ff7a00, #ff9a3c);
+  color: white;
+
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary-btn-lr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* ============================= */
+/* SWITCH TEXT */
+/* ============================= */
+
+.auth-switch-lr {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.auth-switch-lr a {
+  color: #ff7a00;
+  font-weight: 600;
+}
+
+/* ============================= */
+/* ANIMATIONS */
+/* ============================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-left-lr {
+    text-align: center;
+    padding: 30px;
+  }
+
+  .auth-right-lr {
+    padding: 30px;
+  }
+}
+
+
+.auth-message {
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.auth-message.success {
+  background: #e6ffed;
+  color: #2e7d32;
+  border: 1px solid #b7ebc6;
+}
+
+.auth-message.error {
+  background: #ffe6e6;
+  color: #c62828;
+  border: 1px solid #f5c2c7;
 }

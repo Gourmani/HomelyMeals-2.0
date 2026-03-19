@@ -20,13 +20,13 @@ function Navbar() {
     <>
       <nav className="navbar">
 
-        {/* LOGO */}
-        <h2 className="logo">
-           Homely Meals
-        </h2>
+        {/* LEFT */}
+        <div className="nav-left">
+          <h2 className="logo">Homely Meals</h2>
+        </div>
 
-        {/* LINKS */}
-        <div className="nav-links">
+        {/* RIGHT */}
+        <div className="nav-right">
 
           <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
@@ -44,16 +44,18 @@ function Navbar() {
           </button>
 
           {/* AUTH */}
-          {user ? (
-            <button onClick={logout} className="logout-btn">
-              Logout
-            </button>
-          ) : (
-            <>
-              <Link to="/login" className="auth-link">Login</Link>
-              <Link to="/register" className="primary-btn">Register</Link>
-            </>
-          )}
+  {user ? (
+    <button onClick={logout} className="logout-btn">
+      Logout
+    </button>
+  ) : (
+    <>
+      <Link to="/login" className="auth-link">Login</Link>
+      <Link to="/register" className="primary-btn-nav">
+        Get Started
+      </Link>
+    </>
+  )}
 
         </div>
 

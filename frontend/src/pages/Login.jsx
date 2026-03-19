@@ -1,18 +1,17 @@
 import { useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
+import { TypeAnimation } from "react-type-animation"
 
 function Login() {
 
   const { login } = useContext(AuthContext)
-
   const navigate = useNavigate()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const handleLogin = async (e) => {
-
     e.preventDefault()
 
     if (!email || !password) {
@@ -21,42 +20,71 @@ function Login() {
     }
 
     await login(email, password)
-
     alert("Login successful!")
-
     navigate("/")
   }
 
   return (
-    <div style={{ padding: "40px" }}>
+    <div className="auth-container-lr">
 
-      <h1>Login</h1>
+      {/* LEFT SIDE */}
+      <div className="auth-left-lr">
+        <h1>
+          <TypeAnimation
+            sequence={[
+              "Welcome Back 👋",
+              2000,
+              "Fresh Meals Daily 🍱",
+              2000,
+              "Healthy & Affordable 💰",
+              2000,
+            ]}
+            speed={50}
+            repeat={Infinity}
+          />
+        </h1>
 
-      <form onSubmit={handleLogin}>
+        <p>Login to continue your healthy meal journey</p>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <ul>
+          <li>🍱 Fresh homemade meals daily</li>
+          <li>💰 Affordable student pricing</li>
+          <li>🚚 Delivered to your doorstep</li>
+        </ul>
+      </div>
 
-        <br /><br />
+      {/* RIGHT SIDE */}
+      <div className="auth-right-lr">
+        <h2>Login</h2>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <form onSubmit={handleLogin}>
 
-        <br /><br />
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <button type="submit">
-          Login
-        </button>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-      </form>
+          <button type="submit" className="primary-btn-lr">
+            Login
+          </button>
+
+        </form>
+                <p style={{marginTop:"10px"}}>
+                <Link to="/forgot-password">Forgot Password?</Link>
+              </p>
+        <p className="auth-switch-lr">
+          Don’t have an account? <Link to="/register">Register</Link>
+        </p>
+      </div>
 
     </div>
   )
