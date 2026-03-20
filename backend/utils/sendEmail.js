@@ -1,4 +1,6 @@
 const nodemailer = require("nodemailer")
+const dns=require("dns")
+dns.setDefaultResultOrder("ipv4first") // avoid IPv6 issues on some platforms (e.g. Render)
 
 const sendEmail = async (to, subject, text) => {
 
