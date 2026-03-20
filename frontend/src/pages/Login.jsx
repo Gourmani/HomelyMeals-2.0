@@ -2,39 +2,34 @@ import { useState, useContext } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 import { TypeAnimation } from "react-type-animation"
-import { loginUser } from "../services/authService"
 
 function Login() {
 
-  const { login } = useContext(AuthContext)
+  const { login } = useContext(AuthContext) // ✅ use context
   const navigate = useNavigate()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const handleLogin = async (e) => {
-  e.preventDefault()
+    e.preventDefault()
 
-  if (!email || !password) {
-    alert("Enter email and password")
-    return
-  }
-
-  try {
-    const res = await loginUser({ email, password })
-
-    if (res.token) {
-      localStorage.setItem("token", res.token) // IMPORTANT
-      alert("Login successful!")
-      navigate("/")
-    } else {
-      alert(res.message)
+    if (!email || !password) {
+      alert("Enter email and password")
+      return
     }
 
-  } catch (err) {
-    alert(err.response?.data?.message || "Login failed")
+    try {
+      // USE CONTEXT LOGIN (IMPORTANT)
+      await login(email, password)
+
+      alert("Login successful!")
+      navigate("/")
+
+    } catch (err) {
+      alert("Login failed")
+    }
   }
-}
 
   return (
     <div className="auth-container-lr">
@@ -90,9 +85,11 @@ function Login() {
           </button>
 
         </form>
-                <p style={{marginTop:"10px"}}>
-                <Link to="/forgot-password">Forgot Password?</Link>
-              </p>
+
+        <p style={{ marginTop: "10px" }}>
+          <Link to="/forgot-password">Forgot Password?</Link>
+        </p>
+
         <p className="auth-switch-lr">
           Don’t have an account? <Link to="/register">Register</Link>
         </p>
