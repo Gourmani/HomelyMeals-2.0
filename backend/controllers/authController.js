@@ -5,34 +5,30 @@ const sendEmail = require("../utils/sendEmail")
 
 // ================= REGISTER =================
 exports.registerUser = async (req,res)=>{
-
 try{
 
 console.log("REGISTER BODY:", req.body)
 
 const {name,email,password} = req.body
 
-// ✅ EMAIL VALIDATION (GMAIL ONLY)
+// EMAIL VALIDATION
 const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/
-
 if(!emailRegex.test(email)){
   return res.status(400).json({
     message:"Only valid Gmail addresses are allowed"
   })
 }
 
-// ✅ PASSWORD VALIDATION
+// PASSWORD VALIDATION
 const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/
-
 if(!passwordRegex.test(password)){
   return res.status(400).json({
-    message:"Password must be at least 8 characters and include uppercase, lowercase, number and special character"
+    message:"Password must be strong"
   })
 }
 
 // check user exists
 const userExists = await User.findOne({email})
-
 if(userExists){
   return res.status(400).json({message:"User already exists"})
 }
@@ -58,10 +54,12 @@ const token = jwt.sign(
   { expiresIn:"1d" }
 )
 
-// ✅ VERIFY LINK (PRODUCTION)
-const url = `https://homelymeals-2-0.onrender.com/api/auth/verify/${token}`
+// VERIFY LINK (keep backend route - it's OK)
+const url = `${process.env.BACKEND_URL}/api/auth/verify/${token}`
 
-// SEND EMAIL
+// SEND EMAIL (SAFE)
+let emailMessage = "User registered, but email failed."
+
 try {
   await sendEmail(
     newUser.email,
@@ -69,22 +67,22 @@ try {
     `Click this link to verify your account:\n\n${url}`
   )
   console.log("EMAIL SENT SUCCESS")
+  emailMessage = "Verification email sent! Please check inbox."
 } catch (err) {
   console.log("EMAIL ERROR:", err.message)
 }
 
 // RESPONSE
 res.status(201).json({
-  message:"📩 Verification email sent! Please check your inbox before login."
+  message: emailMessage
 })
 
 }catch(error){
-
 console.log("REGISTER ERROR:", error.message)
 res.status(500).json({message:"Server error"})
+}
+}
 
-}
-}
 
 // ================= VERIFY EMAIL =================
 exports.verifyUser = async (req,res)=>{
@@ -107,8 +105,8 @@ await user.save()
 
 console.log("USER VERIFIED:", user.email)
 
-// ✅ REDIRECT TO VERCEL FRONTEND
-res.redirect("https://homely-meals-2-0.vercel.app/login?verified=true")
+// redirect frontend
+res.redirect(`${process.env.FRONTEND_URL}/login?verified=true`)
 
 }catch(error){
 console.log("VERIFY ERROR:", error.message)
@@ -116,9 +114,9 @@ res.status(400).json({message:"Invalid or expired link"})
 }
 }
 
+
 // ================= LOGIN =================
 exports.loginUser = async (req,res)=>{
-
 try{
 
 const {email,password} = req.body
@@ -129,15 +127,15 @@ if(!user){
 return res.status(400).json({message:"Invalid credentials"})
 }
 
-// ✅ STRICT CHECK
-if(user.isVerified !== true){
+// check verification
+if(!user.isVerified){
 return res.status(400).json({
   message:"Please verify your email first"
 })
 }
 
+// password check
 const isMatch = await bcrypt.compare(password,user.password)
-
 if(!isMatch){
 return res.status(400).json({message:"Invalid credentials"})
 }
@@ -160,12 +158,11 @@ email:user.email
 })
 
 }catch(error){
-
 console.log("LOGIN ERROR:", error.message)
 res.status(500).json({message:"Server error"})
+}
+}
 
-}
-}
 
 // ================= PROFILE =================
 exports.getUserProfile = async (req,res)=>{
@@ -191,16 +188,25 @@ process.env.JWT_SECRET,
 { expiresIn:"15m" }
 )
 
-// ✅ FRONTEND RESET LINK (VERCEL)
-const url = `https://homely-meals-2-0.vercel.app/reset-password/${token}`
+const url = `${process.env.FRONTEND_URL}/reset-password/${token}`
 
-await sendEmail(
-user.email,
-"Reset Your Password",
-`Click here to reset your password:\n\n${url}`
-)
+// FIX: EMAIL TRY-CATCH
+try {
+  await sendEmail(
+    user.email,
+    "Reset Your Password",
+    `Click here to reset your password:\n\n${url}`
+  )
 
-res.json({message:"Password reset link sent to your email"})
+  res.json({message:"Password reset link sent to your email"})
+
+} catch (err) {
+  console.log("EMAIL ERROR:", err.message)
+
+  res.status(500).json({
+    message:"Failed to send email. Try again later."
+  })
+}
 
 }catch(error){
 console.log("FORGOT PASSWORD ERROR:", error.message)
@@ -223,9 +229,7 @@ return res.status(400).json({message:"Invalid token"})
 
 const {password} = req.body
 
-// password validation
 const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/
-
 if(!passwordRegex.test(password)){
   return res.status(400).json({
     message:"Password must be strong"

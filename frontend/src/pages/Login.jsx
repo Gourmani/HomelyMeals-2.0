@@ -12,17 +12,28 @@ function Login() {
   const [password, setPassword] = useState("")
 
   const handleLogin = async (e) => {
-    e.preventDefault()
+  e.preventDefault()
 
-    if (!email || !password) {
-      alert("Enter email and password")
-      return
+  if (!email || !password) {
+    alert("Enter email and password")
+    return
+  }
+
+  try {
+    const res = await loginUser({ email, password })
+
+    if (res.token) {
+      localStorage.setItem("token", res.token) // IMPORTANT
+      alert("Login successful!")
+      navigate("/")
+    } else {
+      alert(res.message)
     }
 
-    await login(email, password)
-    alert("Login successful!")
-    navigate("/")
+  } catch (err) {
+    alert(err.response?.data?.message || "Login failed")
   }
+}
 
   return (
     <div className="auth-container-lr">
