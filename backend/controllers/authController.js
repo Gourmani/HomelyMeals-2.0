@@ -54,27 +54,19 @@ const token = jwt.sign(
   { expiresIn:"1d" }
 )
 
-// VERIFY LINK (keep backend route - it's OK)
-const url = `${process.env.BACKEND_URL}/api/auth/verify/${token}`
+// 🔥 IMPORTANT: FRONTEND VERIFY LINK
+const url = `${process.env.FRONTEND_URL}/verify/${token}`
 
-// SEND EMAIL (SAFE)
-let emailMessage = "User registered, but email failed."
+// SEND EMAIL (NON-BLOCKING)
+sendEmail(
+  newUser.email,
+  "Verify Your Email",
+  `Click this link to verify your account:\n\n${url}`
+).catch(err => console.log("EMAIL ERROR:", err.message))
 
-try {
-  await sendEmail(
-    newUser.email,
-    "Verify Your Email",
-    `Click this link to verify your account:\n\n${url}`
-  )
-  console.log("EMAIL SENT SUCCESS")
-  emailMessage = "Verification email sent! Please check inbox."
-} catch (err) {
-  console.log("EMAIL ERROR:", err.message)
-}
-
-// RESPONSE
+// RESPONSE FAST
 res.status(201).json({
-  message: emailMessage
+  message:"User registered successfully. Please check your email."
 })
 
 }catch(error){
@@ -97,7 +89,7 @@ return res.status(400).json({message:"Invalid link"})
 }
 
 if(user.isVerified){
-return res.send("User already verified")
+return res.redirect(`${process.env.FRONTEND_URL}/login?verified=true`)
 }
 
 user.isVerified = true
@@ -105,8 +97,8 @@ await user.save()
 
 console.log("USER VERIFIED:", user.email)
 
-// redirect frontend
-res.redirect(`${process.env.FRONTEND_URL}/login?verified=true`)
+// REDIRECT TO FRONTEND
+return res.redirect(`${process.env.FRONTEND_URL}/login?verified=true`)
 
 }catch(error){
 console.log("VERIFY ERROR:", error.message)
@@ -127,20 +119,18 @@ if(!user){
 return res.status(400).json({message:"Invalid credentials"})
 }
 
-// check verification
 if(!user.isVerified){
 return res.status(400).json({
   message:"Please verify your email first"
 })
 }
 
-// password check
 const isMatch = await bcrypt.compare(password,user.password)
+
 if(!isMatch){
 return res.status(400).json({message:"Invalid credentials"})
 }
 
-// create token
 const token = jwt.sign(
 { id:user._id },
 process.env.JWT_SECRET,
@@ -190,23 +180,14 @@ process.env.JWT_SECRET,
 
 const url = `${process.env.FRONTEND_URL}/reset-password/${token}`
 
-// FIX: EMAIL TRY-CATCH
-try {
-  await sendEmail(
-    user.email,
-    "Reset Your Password",
-    `Click here to reset your password:\n\n${url}`
-  )
+// NON-BLOCKING EMAIL
+sendEmail(
+  user.email,
+  "Reset Your Password",
+  `Click here to reset your password:\n\n${url}`
+).catch(err => console.log("EMAIL ERROR:", err.message))
 
-  res.json({message:"Password reset link sent to your email"})
-
-} catch (err) {
-  console.log("EMAIL ERROR:", err.message)
-
-  res.status(500).json({
-    message:"Failed to send email. Try again later."
-  })
-}
+res.json({message:"Password reset link sent"})
 
 }catch(error){
 console.log("FORGOT PASSWORD ERROR:", error.message)

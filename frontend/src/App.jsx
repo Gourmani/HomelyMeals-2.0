@@ -22,6 +22,7 @@ import CartProvider from "./context/CartContext"
 import OrderSuccess from "./pages/OrderSuccess"
 import ResetPassword from "./pages/ResetPassword"
 import ForgotPassword from "./pages/ForgotPassword"
+import VerifyEmail from "./pages/VerifyEmail"
 
 function App() {
   return (
@@ -80,6 +81,7 @@ function App() {
           <Route path="/order-success" element={<OrderSuccess />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/verify/:token" element={<VerifyEmail />} />
         </Routes>
 
         <Footer />
