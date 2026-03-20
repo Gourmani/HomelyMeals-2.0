@@ -26,7 +26,7 @@ function Register() {
     // ✅ ONLY SUCCESS MESSAGE
     setMessage({
       type: "success",
-      text: res.data.message
+      text: res.message//changes made here to show only success message and not token
     })
 
     // redirect after 2 sec

@@ -24,11 +24,11 @@ enum:["user","admin"],
 default:"user"
 },
 
-// ✅ ADD THIS
-isVerified:{
-type:Boolean,
-default:false
-}
+// ✅ ADD THIS--for email verification( i will implement this later)
+//isVerified:{
+//type:Boolean,
+//default:false
+//}
 
 },{
 timestamps:true
