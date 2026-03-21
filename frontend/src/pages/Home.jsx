@@ -45,9 +45,9 @@ function Home() {
           </div>
 
           <div className="problem-highlight">
-            <p>✔ No hidden charges</p>
-            <p>✔ Affordable daily meals</p>
-            <p>✔ Clean & home-style cooking</p>
+            <p> No hidden charges</p>
+            <p> Affordable daily meals</p>
+            <p> Clean & home-style cooking</p>
           </div>
 
         </div>

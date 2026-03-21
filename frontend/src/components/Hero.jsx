@@ -47,7 +47,7 @@ function Hero() {
       </h1>
 
       <p className="hero-subtitle">
-        Built for students. Designed for daily life.
+        Built for students/Working Professionals. Designed for daily life.
       </p>
 
     </section>

@@ -13,6 +13,7 @@ const orderRoutes = require("./routes/orderRoutes")//phase 3
 const subscriptionRoutes = require("./routes/subscriptionRoutes") //phase 4 
 const paymentRoutes = require("./routes/paymentRoutes")//phase 5
 const adminRoutes = require("./routes/adminRoutes")//phase 6
+const contactRoutes = require("./routes/contactRoutes")
 
 const app = express()
 
@@ -35,6 +36,7 @@ app.use("/api/orders", orderRoutes)//phase 3
 app.use("/api/subscriptions", subscriptionRoutes)//phase 4
 app.use("/api/payments", paymentRoutes)//phase 5
 app.use("/api/admin",adminRoutes)//phase 6
+app.use("/api/contact", contactRoutes)
 
 
 const PORT = process.env.PORT || 5000

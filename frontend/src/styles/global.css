@@ -1038,14 +1038,22 @@ html {
 
 
 
-/*Home Page Fix */
-
-
 /* ============================= */
 /* HOME PAGE PRO VERSION */
 /* ============================= */
 
+/* ===== SECTION TITLE ===== */
+
+.section-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ============================= */
 /* PROBLEM SECTION */
+/* ============================= */
 
 .problem-section {
   padding: 60px 40px;
@@ -1054,7 +1062,7 @@ html {
 .problem-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 40px;
+  gap: 50px;
   align-items: center;
 }
 
@@ -1065,27 +1073,40 @@ html {
 
 .problem-text p {
   margin-bottom: 10px;
-  color: #981616;
+  color: #555;
   line-height: 1.6;
 }
 
+/* 🔥 IMPROVED HIGHLIGHT BOX */
+
 .problem-highlight {
-  background: #fff6e9;
+  background: #ffffff;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.problem-highlight p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 500;
+  color: #333;
 }
 
-/* SECTION TITLE */
-
-.section-title {
-  font-size: 28px;
-  margin-bottom: 20px;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Auto check icon */
+.problem-highlight p::before {
+  content: "✔";
+  color: #22c55e;
+  font-weight: bold;
 }
 
+/* ============================= */
 /* FEATURES */
+/* ============================= */
 
 .features-section {
   padding: 60px 40px;
@@ -1097,23 +1118,29 @@ html {
   gap: 20px;
 }
 
+/* 🔥 CLEAN MODERN CARD */
+
 .feature-card {
-  background: white;
+  background: #ffffff;
   padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: 0.3s;
+  border-radius: 14px;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
+/* Optional border highlight */
 .highlight-card {
-  border: 2px solid #bd0505;
+  border: 2px solid #ff7a00;
 }
 
+/* ============================= */
 /* USERS */
+/* ============================= */
 
 .users-section {
   padding: 50px 40px;
@@ -1134,7 +1161,9 @@ html {
   font-size: 14px;
 }
 
+/* ============================= */
 /* CTA */
+/* ============================= */
 
 .cta-section {
   padding: 60px 40px;
@@ -1147,9 +1176,9 @@ html {
   color: #555;
 }
 
-
-
-/* ===== HERO ANIMATION ===== */
+/* ============================= */
+/* HERO ANIMATION */
+/* ============================= */
 
 .cursor {
   margin-left: 5px;
@@ -1160,7 +1189,9 @@ html {
   50% { opacity: 0; }
 }
 
-/* ===== FADE IN ===== */
+/* ============================= */
+/* FADE IN ANIMATION */
+/* ============================= */
 
 .fade-in {
   opacity: 0;
@@ -1175,52 +1206,31 @@ html {
   }
 }
 
-/* ===== HIGHLIGHT ===== */
+/* ============================= */
+/* TEXT HIGHLIGHT */
+/* ============================= */
 
 .highlight {
   color: #ff7a00;
   font-weight: 600;
 }
 
-/* ===== PROBLEM SECTION ===== */
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
 
-.problem-section {
-  padding: 60px 40px;
+@media (max-width: 768px) {
+  .problem-container {
+    grid-template-columns: 1fr;
+  }
+
+  .features-section,
+  .problem-section,
+  .users-section,
+  .cta-section {
+    padding: 40px 20px;
+  }
 }
-
-.problem-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-}
-
-.problem-text p {
-  margin-bottom: 8px;
-  color: #4d8f2e;
-}
-
-/* ===== FEATURE CARDS UPGRADE ===== */
-
-.feature-card {
-  background: rgb(214, 198, 51);
-  padding: 25px;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-
-/* ===== USER TAGS ===== */
-
-.user-tags span {
-  background: #f3f4f6;
-  padding: 10px 18px;
-  border-radius: 20px;
-}
-
 
 /* ============================= */
 /* NAVBAR */
@@ -1694,4 +1704,30 @@ html {
   background: #ffe6e6;
   color: #c62828;
   border: 1px solid #f5c2c7;
+}
+
+
+/* ============================= */
+/* Contact PAGE */
+.contact-container {
+  padding: 60px 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.contact-form textarea {
+  min-height: 120px;
 }

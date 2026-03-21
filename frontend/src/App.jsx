@@ -23,6 +23,7 @@ import OrderSuccess from "./pages/OrderSuccess"
 import ResetPassword from "./pages/ResetPassword"
 import ForgotPassword from "./pages/ForgotPassword"
 import VerifyEmail from "./pages/VerifyEmail"
+import Contact from "./pages/Contact"
 
 function App() {
   return (
@@ -82,6 +83,7 @@ function App() {
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/verify/:token" element={<VerifyEmail />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
 
         <Footer />
