@@ -23,7 +23,7 @@ function Register() {
   try {
     const res = await registerUser({ name, email, password })
 
-    // ✅ ONLY SUCCESS MESSAGE
+    //  ONLY SUCCESS MESSAGE
     setMessage({
       type: "success",
       text: res.message//changes made here to show only success message and not token
@@ -60,9 +60,9 @@ function Register() {
         <h1>
           <TypeAnimation
             sequence={[
-              "Start Eating Healthy 🍱",
+              "Start Eating Healthy Today! ",
               2000,
-              "No Cooking Stress 🏠",
+              "No Cooking Stress 👩‍🍳",
               2000,
               "Eat Better. Live Better 💪",
               2000,
@@ -85,7 +85,7 @@ function Register() {
       <div className="auth-right-lr">
         <h2>Register</h2>
 
-        {/* ✅ MESSAGE UI */}
+        {/*  MESSAGE UI */}
         {message && (
           <div className={`auth-message ${message.type}`}>
             {message.text}

@@ -9,7 +9,7 @@ const {
   getAllOrders,
   deleteMeal,
   getAllUsers,
-  updateOrderStatus   // ✅ ADD THIS
+  updateOrderStatus   // ADD THIS
 } = require("../controllers/adminController")
 
 router.get("/orders", protect, admin, getAllOrders)
@@ -18,7 +18,7 @@ router.delete("/meals/:id", protect, admin, deleteMeal)
 
 router.get("/users", protect, admin, getAllUsers)
 
-// ✅ NEW ROUTE
+//  NEW ROUTE
 router.put("/orders/:id", protect, admin, updateOrderStatus)
 
 router.get("/dashboard", protect, admin, getDashboardStats)

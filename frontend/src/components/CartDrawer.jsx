@@ -1,10 +1,11 @@
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 function CartDrawer({ isOpen, onClose }) {
 
   const { cart } = useContext(CartContext)
+  const navigate = useNavigate()
 
   const total = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -14,28 +15,32 @@ function CartDrawer({ isOpen, onClose }) {
   if (!isOpen) return null
 
   return (
-    <div className="cart-overlay">
+    <div className="cart-overlay" onClick={onClose}>
 
-      <div className="cart-drawer">
+      <div
+        className="cart-drawer"
+        onClick={(e) => e.stopPropagation()}
+      >
 
         <button className="cart-close-btn" onClick={onClose}>
           ✕
         </button>
 
         <h2 className="cart-title">Your Cart</h2>
-            {cart.length === 0 ? (
-              <div className="empty-state">
-                <h3>🛒 Your cart is empty</h3>
-                <p>Add some delicious meals</p>
 
-                <button
-                  className="empty-btn"
-                  onClick={onClose}
-                >
-                  Browse Meals
-                </button>
-              </div>
-              ) : (
+        {cart.length === 0 ? (
+          <div className="empty-state">
+            <h3>🛒 Your cart is empty</h3>
+            <p>Add some delicious meals</p>
+
+            <button
+              className="empty-btn"
+              onClick={onClose}
+            >
+              Browse Meals
+            </button>
+          </div>
+        ) : (
           <>
             <div className="cart-items">
 
@@ -58,11 +63,16 @@ function CartDrawer({ isOpen, onClose }) {
               Total: ₹ {total}
             </h3>
 
-            <Link to="/cart">
-              <button className="cart-view-btn">
-                View Cart
-              </button>
-            </Link>
+            <button
+              className="cart-view-btn"
+              onClick={() => {
+                onClose()          //  Close drawer
+                navigate("/cart") //  Navigate
+              }}
+            >
+              View Cart
+            </button>
+
           </>
         )}
 

@@ -5,7 +5,7 @@ import { TypeAnimation } from "react-type-animation"
 
 function Login() {
 
-  const { login } = useContext(AuthContext) // ✅ use context
+  const { login } = useContext(AuthContext) //  use context
   const navigate = useNavigate()
 
   const [email, setEmail] = useState("")
@@ -41,9 +41,9 @@ function Login() {
             sequence={[
               "Welcome Back 👋",
               2000,
-              "Fresh Meals Daily 🍱",
+              "Fresh Meals Daily ",
               2000,
-              "Healthy & Affordable 💰",
+              "Healthy & Affordable ",
               2000,
             ]}
             speed={50}
@@ -54,8 +54,8 @@ function Login() {
         <p>Login to continue your healthy meal journey</p>
 
         <ul>
-          <li>🍱 Fresh homemade meals daily</li>
-          <li>💰 Affordable student pricing</li>
+          <li> Fresh homemade meals daily</li>
+          <li> Affordable student pricing</li>
           <li>🚚 Delivered to your doorstep</li>
         </ul>
       </div>
