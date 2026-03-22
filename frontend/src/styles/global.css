@@ -1,4 +1,12 @@
+:root {
+  --primary: #ff7a00;
+  --primary-dark: #e66a00;
+  --bg-light: #fff6e9;
+}
 
+body {
+  font-family: Arial, sans-serif;
+}
 
 /* ============================= */
 /* GLOBAL RESET */
@@ -692,18 +700,20 @@ html {
 }
 
 .hero-btn {
-  padding: 12px 25px;
+  padding: 12px 24px;
   background: #ff7a00;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-size: 15px;
   cursor: pointer;
-  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-/* hover effect (bonus polish) */
 .hero-btn:hover {
   background: #e66a00;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 
@@ -1730,4 +1740,26 @@ html {
 
 .contact-form textarea {
   min-height: 120px;
+}
+
+
+/*Home Page Ui Improvements*/
+
+.user-card {
+  background: #f3f4f6;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.user-card:hover {
+  background: #ff7a00;
+  color: white;
+  transform: scale(1.05);
+}
+
+.cta-section.alt {
+  background: white;
 }

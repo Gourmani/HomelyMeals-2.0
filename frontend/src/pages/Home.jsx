@@ -31,23 +31,23 @@ function Home() {
 
           <div className="problem-text">
             <h2>
-              Tired of <span className="highlight">mess food</span> & costly delivery apps?
+              Tired of <span className="highlight">mess food</span> and expensive delivery apps?
             </h2>
 
-            <p>Mess food gets repetitive and unhealthy.</p>
-            <p>Food apps add extra charges like delivery, GST & platform fees.</p>
-            <p>Cooking daily is time-consuming.</p>
+            <p>Mess food often feels repetitive and lacks proper nutrition.</p>
+            <p>Delivery apps add extra charges like delivery fees, GST, and platform costs.</p>
+            <p>Cooking every day can be time-consuming and tiring.</p>
 
             <p>
-              <strong>Homely Meals solves this.</strong><br />
-              Fresh, hygienic and affordable meals — delivered daily without hidden costs.
+              <strong>That’s where Homely Meals comes in.</strong><br />
+              Fresh, hygienic, and affordable meals delivered daily — without hidden charges.
             </p>
           </div>
 
           <div className="problem-highlight">
-            <p> No hidden charges</p>
-            <p> Affordable daily meals</p>
-            <p> Clean & home-style cooking</p>
+            <p>No hidden charges</p>
+            <p>Affordable daily meals</p>
+            <p>Clean, home-style cooking</p>
           </div>
 
         </div>
@@ -62,22 +62,22 @@ function Home() {
 
           <div className="feature-card highlight-card">
             <h3>Fresh Home-Style Food</h3>
-            <p>Prepared with hygiene and care — just like home.</p>
+            <p>Prepared with care and hygiene — just like home-cooked meals.</p>
           </div>
 
           <div className="feature-card highlight-card">
             <h3>Transparent Pricing</h3>
-            <p>No platform fees, no surge pricing, no surprises.</p>
+            <p>No hidden fees or extra charges — what you see is what you pay.</p>
           </div>
 
           <div className="feature-card highlight-card">
             <h3>Flexible Plans</h3>
-            <p>Choose daily, weekly or monthly subscriptions.</p>
+            <p>Choose from daily, weekly, or monthly plans that suit your routine.</p>
           </div>
 
           <div className="feature-card highlight-card">
             <h3>Healthy Options</h3>
-            <p>Balanced meals for fitness and daily nutrition.</p>
+            <p>Balanced meals designed for your daily nutrition and fitness goals.</p>
           </div>
 
         </div>
@@ -87,7 +87,7 @@ function Home() {
       {/* POPULAR */}
       <div className="home-section fade-in">
 
-        <h2 className="section-title">Popular Meals</h2>
+        <h2 className="section-title">Popular Meals Loved by Our Customers</h2>
 
         <div className="meal-grid">
           {meals.map(meal => (
@@ -100,43 +100,53 @@ function Home() {
       {/* USERS */}
       <section className="users-section fade-in">
 
-        <h2 className="section-title">Perfect For</h2>
+        <h2>
+          Perfect for <span className="highlight">your everyday lifestyle</span>
+        </h2>
 
         <div className="user-tags">
-          <span>Students in PG / Hostel</span>
-          <span>Working Professionals</span>
-          <span>Fitness Enthusiasts</span>
-          <span>Healthy Lifestyle Seekers</span>
+          <div className="user-card">🎓 Students living in PGs or hostels</div>
+          <div className="user-card">💼 Busy working professionals</div>
+          <div className="user-card">💪 Fitness-focused individuals</div>
+          <div className="user-card">🥗 Anyone aiming for a healthier lifestyle</div>
         </div>
 
       </section>
 
-      {/* PARTY / BULK ORDER */}
+      {/* PARTY CTA */}
       <section className="cta-section fade-in">
 
-        <h2>Planning a Party or Event?</h2>
+        <h2>
+          Planning a <span className="highlight">party</span> or event?
+        </h2>
 
         <p>
-          Get fresh meals in bulk at affordable prices. Perfect for small gatherings and events.
+          Get fresh, home-style meals in bulk at affordable prices — perfect for small gatherings, celebrations, and office events.
         </p>
 
         <Link to="/contact">
-          <button className="hero-btn">Contact Us</button>
+          <button className="hero-btn">
+            Contact Us →
+          </button>
         </Link>
 
       </section>
 
       {/* FINAL CTA */}
-      <section className="cta-section fade-in">
+      <section className="cta-section alt fade-in">
 
-        <h2>Eat Better. Spend Less. Live Healthier.</h2>
+        <h2>
+          Eat better. Spend less. <span className="highlight">Live healthier</span>.
+        </h2>
 
         <p>
-          Fresh, affordable meals delivered daily — without extra charges.
+          Fresh, affordable meals delivered daily — simple, reliable, and made for your routine.
         </p>
 
         <Link to="/menu">
-          <button className="hero-btn">Explore Meals</button>
+          <button className="hero-btn">
+            Explore Meals →
+          </button>
         </Link>
 
       </section>

@@ -4,10 +4,10 @@ import { Link } from "react-router-dom"
 function Hero() {
 
   const texts = [
-    "Fresh Homely Meals",
-    "Healthy Daily Food",
-    "Affordable Student Meals"
-  ]
+  "Fresh Home-Style Meals",
+  "Healthy Food for Everyday Life",
+  "Affordable Meals for Students & Professionals"
+]
 
   const [currentText, setCurrentText] = useState("")
   const [index, setIndex] = useState(0)
@@ -47,7 +47,7 @@ function Hero() {
       </h1>
 
       <p className="hero-subtitle">
-        Built for students/Working Professionals. Designed for daily life.
+        Designed for busy students and professionals — so you can eat better every day.
       </p>
 
     </section>
