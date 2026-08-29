@@ -111,9 +111,8 @@ backend/
 
 ### Clone Repository
 
-git clone https://github.com/your-username/homely-meals.git  
-cd homely-meals  
-
+git clone https://github.com/Gourmani/homely-meals.git
+cd homely-meals
 ---
 
 ### Backend Setup
